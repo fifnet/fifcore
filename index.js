@@ -78,7 +78,7 @@ fastify.get('/rundb',(req,reply)=>{
   reply.send(res)
 })
 fastify.get('/getapi',(req,reply)=>{
-  reply.send({API:"http://127.0.0.1:9001/api/"})
+  reply.send({API:"http://192.168.1.102:9001/api/"})
 })
 async function updateAccount(nbdomain){
   console.log("updating:",nbdomain)
