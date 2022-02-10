@@ -2,9 +2,8 @@ const Database = require('better-sqlite3')
 const path = require("path")
 
 class DB{
-    constructor(app,dbpath){
+    constructor(app){
         this.appMgr = app
-        this.path = dbpath
         this.dbs = {}
     }
     addDB(name){

@@ -14,7 +14,7 @@ const Apps = require('./src/apps')
 let ServerURL = ""
 
 const apps = new Apps
-const db = new DB(apps,__dirname+"/dbs/")
+const db = new DB(apps)
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
   // Set this to true for detailed logging:

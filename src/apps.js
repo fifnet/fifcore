@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs-extra');
 const path = require("path")
 class Apps {
     constructor() {
@@ -11,14 +11,19 @@ class Apps {
         fs.readdirSync(folder).forEach(file => {
             const token = Date.now()
             const pa = path.join(folder, file)
-            if (fs.existsSync(path.join(pa, 'meta.json'))) {
+            console.log(pa)
+            if (fs.existsSync(pa+'/meta.json')) {
                 this.apps[file] = {
                     name: file,
                     path: pa,
-                    meta: require(path.join(pa, 'meta.json')),
+                    meta: require(pa+ '/meta.json'),
                     token: token
                 }
                 console.log(file,":",token)
+                //init dbs
+                if(!fs.existsSync(pa+'/dbs/')&&fs.existsSync(pa+'/db_init/')){
+                    fs.copySync(pa+'/db_init/',pa+'/dbs/',{ recursive: true })
+                }
             }
         });
         return this.apps

@@ -16,7 +16,7 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
-            "name": "debug firstTalk",
+            "name": "debug fifTalk",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}/src",
             "breakOnLoad": true,
