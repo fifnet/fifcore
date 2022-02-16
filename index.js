@@ -83,8 +83,9 @@ fastify.get('/rundb', (req, reply) => {
   const res = db.runDB(token, filename, command, sql, para)
   reply.send(res)
 })
+const nbNode = "https://tnode.nbdomain.com/api/" //http://192.168.1.102:9001/api/
 fastify.get('/getapi', (req, reply) => {
-  reply.send({ API: "http://192.168.1.102:9001/api/" })
+  reply.send({ API: nbNode })
 })
 async function updateAccount(nbdomain) {
   console.log("updating:", nbdomain)
