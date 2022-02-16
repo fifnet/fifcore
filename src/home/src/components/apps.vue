@@ -14,7 +14,7 @@ export default {
   setup () {
     const lsApps = ref({})
     async function getApps(){
-      const apps = await (await fetch(location.origin+"/apps")).json()
+      const apps = await (await fetch(location.origin+"/apps?adminKey="+window.adminKey)).json()
       lsApps.value = apps
       console.log(apps)
     }
@@ -25,7 +25,7 @@ export default {
       return url
     }
     function openApp(app){
-      sessionStorage.setItem(app.name,app.token)
+      document.cookie='fiftoken='+app.token+';path=/'+app.name+"/"
       window.open(getAppURL(app),app.name)
     }
     return {lsApps,getAppURL,openApp}

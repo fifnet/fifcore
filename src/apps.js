@@ -11,21 +11,23 @@ class Apps {
         fs.readdirSync(folder).forEach(file => {
             const token = Date.now()
             const pa = path.join(folder, file)
+            const dbPath = path.join(__dirname, "../dbs/" + file + "/")
             console.log(pa)
-            if (fs.existsSync(pa+'/meta.json')) {
+            if (fs.existsSync(pa + '/meta.json')) {
                 this.apps[file] = {
                     name: file,
                     path: pa,
-                    meta: require(pa+ '/meta.json'),
+                    meta: require(pa + '/meta.json'),
                     token: token
                 }
-                console.log(file,":",token)
+                console.log(file, ":", token)
                 //init dbs
-                if(!fs.existsSync(pa+'/dbs/')&&fs.existsSync(pa+'/db_init/')){
-                    fs.copySync(pa+'/db_init/',pa+'/dbs/',{ recursive: true })
+                if (!fs.existsSync(dbPath) && fs.existsSync(pa + '/db_init/')) {
+                    fs.copySync(pa + '/db_init/', dbPath, { recursive: true })
                 }
             }
         });
+        
         return this.apps
     }
     getApp(token) {

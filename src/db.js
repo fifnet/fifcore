@@ -12,13 +12,12 @@ class DB{
     runDB(appToken,filename,command,sql,para){
         const app = this.appMgr.getApp(appToken)
         if(!app)return null
-        const db = new Database(path.join(app.path,"dbs/"+filename))
+        const dbpath = path.join(__dirname,"../dbs/"+app.name+"/"+filename)
+        console.log(dbpath)
+        const db = new Database(dbpath)
         const param = para ? para.split('|^|^') : []
         
         const fun = db.prepare(sql)
-//        const res = fun.all.apply(fun,param)
-//        console.log("runDB return:",res)
-//        return res
 
         if(command=='run'){
             return fun.run.apply(fun,param)
